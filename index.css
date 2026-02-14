@@ -12,6 +12,7 @@ body {
     background-color: #f5f5f5;
 }
 
+
 .container {
     width: 375px;
     display: block;
@@ -96,12 +97,20 @@ nav {
     gap: 15px;
 }
 
+.post-icon-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+}
+
 .post-icon {
     height: 26px;
 }
 
-.post-icon:hover,
-.post-icon:focus {
+.post-icon-btn:hover .post-icon,
+.post-icon-btn:focus .post-icon {
     opacity: 60%;
 }
 
