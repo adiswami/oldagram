@@ -54,6 +54,7 @@ nav {
 
 .post-user-info {
     height: 34px;
+    width: 34px;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -62,6 +63,7 @@ nav {
 
 .post-user-avatar {
     height: 34px;
+    width: 34px;
     border-radius: 50%;
 }
 
