@@ -28,3 +28,45 @@ const posts = [
     }
 ]
 
+const post = document.querySelector(".post")
+
+
+function renderPost() {
+        let postContent = ""
+        for (let i=0; i<posts.length; i++) {
+         postContent +=
+            `
+                <section class="post">
+                    <div class="post-user-info">
+                        <img class="post-user-avatar" src=${posts[i].avatar} alt="Avatar of ${posts[i].name}">
+                        <div class="post-user-details">
+                            <p class="post-user-fullname">${posts[i].name}</p>
+                            <p class="post-user-location">${posts[i].location}</p>
+                        </div>
+                    </div>
+                    <img class="post-img" src=${posts[i].post} alt="Selfie of ${posts[i].name}">
+                    <div class="post-body">
+                        <div class="container-icons">
+                            <button class="post-icon-btn" aria-label="Like post">
+                                <img class="post-icon icon-heart" src="images/icon-heart.png" alt="">
+                            </button>
+                            <button class="post-icon-btn" aria-label="Comment on post">
+                                <img class="post-icon icon-comment" src="images/icon-comment.png" alt="">
+                            </button>
+                            <button class="post-icon-btn" aria-label="Direct message">
+                                <img class="post-icon icon-dm" src="images/icon-dm.png" alt="">
+                            </button>
+                            </div>
+                        <p class="post-like-count">${posts[i].likes} likes</p>
+                        <p class="post-content">
+                            <span class="post-username">${posts[i].username}</span>
+                            <span class="post-headline">${posts[i].comment}</span>
+                        </p>
+                    </div>
+                </section>
+            `
+        }
+    post.innerHTML = postContent
+}
+
+renderPost()
