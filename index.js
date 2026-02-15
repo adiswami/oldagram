@@ -28,10 +28,10 @@ const posts = [
     }
 ]
 
-const post = document.querySelector(".post")
+const containerFeed = document.querySelector(".container-feed")
 
 
-function renderPost() {
+function renderPosts() {
         let postContent = ""
         for (let i=0; i<posts.length; i++) {
          postContent +=
@@ -66,7 +66,7 @@ function renderPost() {
                 </section>
             `
         }
-    post.innerHTML = postContent
+    containerFeed.innerHTML = postContent
 }
 
-renderPost()
+renderPosts()
