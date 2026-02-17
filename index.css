@@ -116,8 +116,8 @@ nav {
     height: 26px;
 }
 
-.post-icon-btn:hover .post-icon,
-.post-icon-btn:focus .post-icon {
+.post-icon-btn:hover,
+.post-icon-btn:focus {
     opacity: 60%;
 }
 
@@ -127,4 +127,12 @@ nav {
 
 .post-headline {
     line-height: 20px;
+}
+
+.icon-heart.liked {
+    /* Turns black/gray into a "Like" Red/Pink */
+    filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(311deg) brightness(100%) contrast(101%);
+    
+    /* Optional: adds a smooth transition effect */
+    transition: filter 0.2s ease;
 }

@@ -1,30 +1,36 @@
 const posts = [
     {
+        postId: "1",
         name: "Vincent van Gogh",
         username: "vincey1853",
         location: "Zundert, Netherlands",
         avatar: "images/avatar-vangogh.jpg",
         post: "images/post-vangogh.jpg",
         comment: "just took a few mushrooms lol",
-        likes: 21
+        likes: 21,
+        isLiked: false
     },
     {
+        postId: "2",
         name: "Gustave Courbet",
         username: "gus1819",
         location: "Ornans, France",
         avatar: "images/avatar-courbet.jpg",
         post: "images/post-courbet.jpg",
         comment: "i'm feelin a bit stressed tbh",
-        likes: 4
+        likes: 4,
+        isLiked: false
     },
         {
+        postId: "3",
         name: "Joseph Ducreux",
         username: "jd1735",
         location: "Paris, France",
         avatar: "images/avatar-ducreux.jpg",
         post: "images/post-ducreux.jpg",
         comment: "gm friends! which coin are YOU stacking up today?? post below and WAGMI!",
-        likes: 152
+        likes: 152,
+        isLiked: false
     }
 ]
 
@@ -33,10 +39,16 @@ const containerFeed = document.querySelector(".container-feed")
 
 function renderPosts() {
         let postContent = ""
+
         for (let i=0; i<posts.length; i++) {
+
+        // Create a variable to hold the class name based on the boolean
+        const likedClass = posts[i].isLiked ? "liked" : ""
+        console.log(likedClass)
+            
          postContent +=
             `
-                <section class="post">
+                <section class="post" id=${posts[i].postId}>
                     <div class="post-user-info">
                         <img class="post-user-avatar" src=${posts[i].avatar} alt="Avatar of ${posts[i].name}">
                         <div class="post-user-details">
@@ -48,7 +60,7 @@ function renderPosts() {
                     <div class="post-body">
                         <div class="container-icons">
                             <button class="post-icon-btn" aria-label="Like post">
-                                <img class="post-icon icon-heart" src="images/icon-heart.png" alt="">
+                                <img class="post-icon icon-heart ${likedClass}" src="images/icon-heart.png" alt="">
                             </button>
                             <button class="post-icon-btn" aria-label="Comment on post">
                                 <img class="post-icon icon-comment" src="images/icon-comment.png" alt="">
@@ -70,3 +82,33 @@ function renderPosts() {
 }
 
 renderPosts()
+
+const feedContainer = document.querySelector(".container-feed");
+
+function like(e) {
+    if (e.target.classList.contains("icon-heart")) {
+        // 1. Find the parent section and get the ID
+        const postSection = e.target.closest(".post");
+        const clickedPostId = postSection.id;
+
+        // 2. Find the actual data object in your 'posts' array
+        const targetPost = posts.find(post => post.postId === clickedPostId);
+
+        if (targetPost) {
+            //Toggle logic
+            if (!targetPost.isLiked) {
+                targetPost.likes++;
+                targetPost.isLiked = true;
+            } else {
+                targetPost.likes--;
+                targetPost.isLiked = false;
+            }
+
+            //Update the UI
+            renderPosts()
+        }
+    }
+}
+// Attach the listener to the container instead of the buttons
+feedContainer.addEventListener("click", like);
+
